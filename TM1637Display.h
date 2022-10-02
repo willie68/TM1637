@@ -29,6 +29,9 @@
 #define SEG_DP  0b10000000
 
 #define DEFAULT_BIT_DELAY  100
+// Defines which element's highest bit is the colon's control bit
+#define COLON_POSITION 1
+
 
 class TM1637Display {
 
@@ -50,6 +53,10 @@ public:
   //! @param brightness A number from 0 (lowes brightness) to 7 (highest brightness)
   //! @param on Turn display on or off
   void setBrightness(uint8_t brightness, bool on = true);
+
+   //! Sets the colon indicator mode on or off
+  //! @param colon When true, lights up the colon on next use of showNumberDec
+  void setColon(const bool colon);
 
   //! Display arbitrary data on the module
   //!
@@ -161,6 +168,7 @@ private:
 	uint8_t m_pinDIO;
 	uint8_t m_brightness;
 	unsigned int m_bitDelay;
+	bool m_colon;
 };
 
 #endif // __TM1637DISPLAY__
